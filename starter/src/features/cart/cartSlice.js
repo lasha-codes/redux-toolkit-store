@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { openModal } from '../modal/modalSlice'
 const url = 'https://course-api.com/react-useReducer-cart-project'
 
 const initialState = {
@@ -14,6 +15,7 @@ export const getCartItems = createAsyncThunk(
   async (name, thunkApi) => {
     try {
       console.log(thunkApi.getState())
+      thunkApi.dispatch(openModal())
       const response = await axios.get(url)
       return response.data
     } catch (error) {}
